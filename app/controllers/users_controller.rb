@@ -20,10 +20,10 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Thanks! We'll contact you when we've got something exciting to show you!"
-      redirect_to root_url
     else
-      render 'new'
+      flash[:error] = @user.errors.full_messages.to_sentence.humanize
     end
+    redirect_to root_url
   end
 
   def edit

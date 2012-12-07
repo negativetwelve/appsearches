@@ -25,6 +25,7 @@ a:hover {
 
 ul {
   clear: both;
+  list-style-type: none;
 }
 
 ul li {
