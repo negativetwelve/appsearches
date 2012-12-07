@@ -66,9 +66,14 @@ ul li {
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
     -moz-backface-visibility: visible;
-    min-height: 1000px;
+    min-height: 100%;
     text-align: center;
   }
+    
+  #preregister h1 {
+    font-size: 50px;
+    font-weight: 60;
+  }  
 }
 
 @media (min-width: 979px) {
@@ -80,7 +85,7 @@ ul li {
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
     -moz-backface-visibility: visible;
-    min-height: 1000px;
+    min-height: 100%;
   	text-align: center;
   }
   
@@ -90,12 +95,9 @@ ul li {
   }
 }
 
-.content {
-  padding-bottom: 10px;
-}
-
 #preregister {
   margin-top: 10%;
+  margin-bottom: 10%;
   height: 100%;
   font-family: 'Open Sans', Segoe UI, Myriad Pro, sans-serif;
 }
