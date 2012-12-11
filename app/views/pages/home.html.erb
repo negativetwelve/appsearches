@@ -4,5 +4,12 @@
     <h1>APPSEARCH.ES</h1>
     <h3>Search for the apps that you want.</h3>
     <h3><%= link_to "Top Free Apps", top_apps_path %></h3>
+    
+    <form action="<%= apps_path %>" method="get" >
+      <div class="input-append">
+        <%= text_field_tag :search, params[:search], autofocus: "autofocus" %>  
+        <%= submit_tag "Search", name: nil, class: "btn" %>
+      </div>
+    </form>
   </div>
 </div>

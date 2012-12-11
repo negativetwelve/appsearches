@@ -1,7 +1,11 @@
 class AppsController < ApplicationController
   
-  def index    
-    @apps = App.order(:rank).paginate(page: params[:page], per_page: App.per_page)
+  def index  
+    @search = App.search do  
+      fulltext params[:search]
+      paginate per_page: App.per_page
+    end  
+    @apps = @search.results
   end
   
   def show

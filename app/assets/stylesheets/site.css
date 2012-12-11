@@ -1,6 +1,7 @@
 
 body {
-  font-family: "Source Sans Pro",sans-serif;
+  //font-family: "Source Sans Pro",sans-serif;
+  font-family: 'Open Sans', Segoe UI, Myriad Pro, sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -34,6 +35,27 @@ ul li {
 
 .main {
   
+}
+
+.header {
+  height: 50px;
+}
+
+.app-logo {
+  font-size: 35px;
+  font-weight: 60;
+  margin: 10px;
+  float: left;
+}
+
+.app-logo a {
+  vertical-align: text-top;
+}
+
+.header-search {
+  float: left;
+  margin-top: 22px;
+  margin-left: 20px;
 }
 
 @media (max-width: 767px) {
@@ -125,6 +147,10 @@ ul li {
   color: #fff !important;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
   -webkit-font-smoothing: antialiased;
+}
+
+.btn-search {
+  display: none;
 }
 
 .center {

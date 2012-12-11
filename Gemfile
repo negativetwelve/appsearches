@@ -11,6 +11,9 @@ gem 'passenger', '3.0.18'
 gem 'newrelic_rpm'
 gem 'nokogiri'
 gem 'fastimage'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+gem 'progress_bar'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

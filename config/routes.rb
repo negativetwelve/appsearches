@@ -2,7 +2,7 @@ AppSearches::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :apps, only: [:show]
+  resources :apps, only: [:show, :index]
   
   root to: 'pages#home'
   
