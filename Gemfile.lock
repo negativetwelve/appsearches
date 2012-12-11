@@ -121,6 +121,9 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.12.2)
+    pg_search (0.5.7)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyglot (0.3.3)
     progress_bar (0.4.0)
       highline (~> 1.6.1)
@@ -218,6 +221,7 @@ DEPENDENCIES
   nokogiri
   passenger (= 3.0.18)
   pg (= 0.12.2)
+  pg_search
   progress_bar
   rails (= 3.2.8)
   rspec-rails (= 2.11.0)

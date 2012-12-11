@@ -14,7 +14,7 @@ gem 'fastimage'
 gem 'progress_bar'
 gem 'texticle', :require => 'texticle/rails'
 gem 'pg', '0.12.2'
-
+gem 'pg_search'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

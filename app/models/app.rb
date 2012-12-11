@@ -1,4 +1,8 @@
 class App < ActiveRecord::Base
+  # for searching
+  include PgSearch
+  pg_search_scope :search_test, :against => [[:track_name, 'A'], [:seller_name, 'A'], [:description, 'C'], [:release_notes, 'C']]
+  
   attr_accessible :kind, :features, :supported_devices, :is_gamecenter_enabled, :artist_view_url, :artwork_url_60, 
                   :screenshot_urls, :ipad_screenshot_urls, :artwork_url_512, :artist_id, :artist_name, :price, 
                   :version, :description, :genre_ids, :release_date, :seller_name, :currency, :genres, :bundle_id, :track_id,
@@ -17,5 +21,6 @@ class App < ActiveRecord::Base
   
   # for paginating
   self.per_page = 20
+  
   
 end
