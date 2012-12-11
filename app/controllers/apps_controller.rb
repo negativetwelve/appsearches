@@ -1,7 +1,11 @@
 class AppsController < ApplicationController
   
-  def index  
-    @apps = App.search(params[:search]).paginate(page: params[:page], per_page: App.per_page)
+  def index
+    if params[:search].nil? || params[:search].empty?
+      @apps = App.paginate(page: params[:page], per_page: App.per_page)
+    else
+      @apps = App.search(params[:search]).paginate(page: params[:page], per_page: App.per_page)
+    end
   end
   
   def show
