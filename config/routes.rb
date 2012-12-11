@@ -1,9 +1,12 @@
-App::Application.routes.draw do
+AppSearches::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :apps, only: [:show]
   
   root to: 'pages#home'
+  
+  match '/top/apps', to: 'apps#index'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

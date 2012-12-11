@@ -1,0 +1,12 @@
+<div id="top-apps">
+  <table class="table-striped table-hover table-top-apps">
+  <% @apps.each do |app| %>
+    <tr>
+      <td id="rank"><%= app.rank %>.</td> 
+      <td id="icon"><%= image_tag app.artwork_url_60, class: "artwork-60" %></td>
+      <td><%= link_to app.track_name, app %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= will_paginate(@apps) %>
+</div>

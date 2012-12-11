@@ -1,28 +1,8 @@
+
 <div id="preregister">
   <div id="prereg-text">
     <h1>APPSEARCH.ES</h1>
     <h3>Search for the apps that you want.</h3>
-    <h3>Sign up to learn more!</h3>
-    
-    <div class="pre-signup">
-      <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-
-        <%= f.label :password_confirmation, "Password Confirmation" %>
-        <%= f.password_field :password_confirmation %>
-        <br>
-        <%= f.submit "Create my account", class: "btn flat-button" %>
-      <% end %>
-    </div>
-    
-    
+    <h3><%= link_to "Top Apps", top_apps_path %></h3>
   </div>
 </div>

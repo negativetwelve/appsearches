@@ -1,0 +1,30 @@
+
+#top-apps {
+  width: 100%;
+}
+
+.table-top-apps {
+  width: 100%;
+}
+
+.table-top-apps td#icon {
+  width: 80px;
+}
+
+.table-top-apps td#rank {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 30px;
+}
+
+.artwork-60 {
+  border-radius: 10px;
+}
+
+.artwork-100 {
+  border-radius: 35px;
+}
+
+.iphone-screen {
+  max-width: 25%;
+}
