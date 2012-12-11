@@ -18,24 +18,4 @@ class App < ActiveRecord::Base
   # for paginating
   self.per_page = 20
   
-  # for searching
-  searchable do
-    text :track_name, boost: 5  
-    text :seller_name, boost: 2
-    text :track_censored_name, boost: 4
-    text :release_notes
-    text :description
-    text :kind, boost: 5
-    
-    text :genres do
-      genres.map { |genre| genre }
-    end
-
-    boolean :is_gamecenter_enabled
-    integer :genre_ids, multiple: true
-    integer :track_id
-    double  :average_user_rating
-    time    :release_date
-  end
-  
 end

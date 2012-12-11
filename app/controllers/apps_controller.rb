@@ -1,11 +1,7 @@
 class AppsController < ApplicationController
   
   def index  
-    @search = App.search do  
-      fulltext params[:search]
-      paginate per_page: App.per_page
-    end  
-    @apps = @search.results
+    @apps = App.search(params[:search]).paginate(page: params[:page], per_page: App.per_page)
   end
   
   def show

@@ -11,12 +11,12 @@ gem 'passenger', '3.0.18'
 gem 'newrelic_rpm'
 gem 'nokogiri'
 gem 'fastimage'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
 gem 'progress_bar'
+gem 'texticle', :require => 'texticle/rails'
+gem 'pg', '0.12.2'
+
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'  
@@ -41,5 +41,4 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
 end
