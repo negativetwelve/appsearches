@@ -37,6 +37,10 @@ ul li {
   padding: 5px;
 }
 
+[class*="span"] {
+  margin-left: 5px;
+}
+
 .main {
   margin-bottom: 10px; 
 }
@@ -45,10 +49,14 @@ ul li {
   height: 80px;
 }
 
+ul.nav {
+  padding: 0 0 0 15px;
+}
+
 .app-logo {
   font-size: 35px;
   font-weight: 60;
-  margin: 10px;
+  margin: 10px 10px 10px 20px;
   float: left;
 }
 

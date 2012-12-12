@@ -1,26 +1,43 @@
-<div id="show-app">
-  <div class="app-name">
-    <%= @app.track_name %>
+<%= render 'layouts/header' %>
+<%= render 'apps/tabs' %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="app-name">
+        <%= @app.track_name %>
+      </div>
+      <div class="app-seller">
+        By: <%= link_to @app.seller_name, '/seller/' + @app.artist_id.to_s %>
+      </div>
+      <div class="app-image">
+        <%= image_tag @app.artwork_url_100, class: "artwork-100", size: "200x200" %>
+      </div>
+      <div class="app-link-itunes">
+        <%= link_to "View on iTunes website", @app.track_view_url %>
+      </div>
+    </div>
+  
+    <div class="span8">
+      <div class="app-description">
+        <%= simple_format h @app.description %>
+      </div>
+      <div class="app-whats-new">
+        What's new in version <%= @app.version %>
+        <%= simple_format h @app.release_notes %>
+      </div>
+    </div>
   </div>
-  <div class="app-seller">
-    By: <%= link_to @app.seller_name, '/seller/' + @app.artist_id.to_s %>
+  
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="app-screenshots">
+        <% @app.screenshot_urls.each do |screen| %>
+          <%= image_tag screen, class: "iphone-screen" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="app-image">
-    <%= image_tag @app.artwork_url_100, class: "artwork-100", size: "200x200" %>
-  </div>
-  <div class="app-link-itunes">
-    <%= link_to "View on iTunes website", @app.track_view_url %>
-  </div>
-  <div class="app-description">
-    <%= simple_format h @app.description %>
-  </div>
-  <div class="app-whats-new">
-    What's new in version <%= @app.version %>
-    <%= simple_format h @app.release_notes %>
-  </div>
-  <div class="app-screenshots">
-    <% @app.screenshot_urls.each do |screen| %>
-      <%= image_tag screen, class: "iphone-screen" %>
-    <% end %>
-  </div>
+  
 </div>
+
