@@ -7,7 +7,8 @@ AppSearches::Application.routes.draw do
   root to: 'pages#home'
   
   match '/seller/:artist_id', to: 'apps#index'
-  match '/top/:type/apps', to: 'apps#index'
+  match '/top/apps', to: 'apps#index', as: :top_apps
+  match '/top/apps/:type', to: 'apps#index', as: :top_apps_type
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

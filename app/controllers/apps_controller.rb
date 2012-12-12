@@ -12,6 +12,8 @@ class AppsController < ApplicationController
       end
     elsif params[:fuzzy_search]
       
+    elsif params[:price]
+      @apps = App.price(params[:price].to_f).order(:rank).paginate(page: params[:page], per_page: App.per_page)      
     elsif params[:artist_id]
       @seller_name = App.find_by_artist_id(params[:artist_id]).seller_name
       @apps = App.where(artist_id: params[:artist_id].to_i).paginate(page: params[:page], per_page: App.per_page)

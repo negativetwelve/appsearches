@@ -27,6 +27,7 @@ class App < ActiveRecord::Base
   scope :free, where(formatted_price: "Free")
   scope :paid, where("formatted_price != 'Free'")
   scope :top, where("rank IS NOT NULL")
+  scope :price, lambda { |price| { :conditions => ['price = ?', price] } }
   
   def free?
     formatted_price.downcase == "free"

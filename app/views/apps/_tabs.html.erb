@@ -1,13 +1,20 @@
 <ul class="nav nav-tabs">
   <% if params[:type] == "free" %>
-    <li class="active"><%= link_to 'Top Free Apps', '/top/free/apps' %></li>
+  <li class="active"><%= link_to 'Top Free Apps', top_apps_type_path('free') %></li>
   <% else %>
-    <li><%= link_to 'Top Free Apps', '/top/free/apps' %></li>
+    <li><%= link_to 'Top Free Apps', top_apps_type_path('free') %></li>
   <% end %>
   
   <% if params[:type] == "paid" %>
-  <li class="active"><%= link_to 'Top Paid Apps', '/top/paid/apps' %></li>
+    <li class="active"><%= link_to 'Top Paid Apps', top_apps_type_path('paid') %></li>
   <% else %>
-    <li><%= link_to 'Top Paid Apps', '/top/paid/apps' %></li>
+    <li><%= link_to 'Top Paid Apps', top_apps_type_path('paid') %></li>
   <% end %>
+  
+  <% if params[:price] == "0.99" %>
+  <li class="active"><%= link_to 'Top Apps for $0.99', top_apps_path(price: 0.99) %></li>
+  <% else %>
+    <li><%= link_to 'Top Apps for $0.99', top_apps_path(price: 0.99) %></li>
+  <% end %>
+  
 </ul>
