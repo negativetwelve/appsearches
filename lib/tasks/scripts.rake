@@ -52,7 +52,8 @@ namespace :add do
     puts "Adding apps..."
     apps.each_with_index do |(id, pic), index|
       app = find_by_id(id)["results"][0]
-      if args[:type].to_s[0..3] == "top"
+      type = args[:type].to_s[0..7]
+      if type == "topfree" || type == "toppaid"
         add_app_to_db(app, index+1, pic)
       else
         add_app_to_db(app, nil, pic)
@@ -115,7 +116,7 @@ def add_app_to_db(app, rank, pic)
   else
     db_app.rank = rank
     db_app.artwork_url_100 = pic
-    db_app.save
-    puts "Updated #{db_app.track_name}"
+    db_app.save!
+    puts "Updated #{db_app.track_name} with rank #{db_app.rank.to_s}"
   end
 end
