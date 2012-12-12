@@ -8,6 +8,10 @@ module ApplicationHelper
       page_title
     end
   end
+  
+  def image_url(source)
+    "#{root_url[0...-1]}#{image_path(source)}"
+  end
 
   def humanize_index(index, page, per_page)
     if page == 0
