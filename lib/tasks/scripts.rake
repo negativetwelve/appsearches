@@ -78,7 +78,7 @@ def get_top_paid_apps(amount)
   address = "https://itunes.apple.com/us/rss/toppaidapplications/limit=#{amount}/xml"
   results = Nokogiri::XML(open(address))
   ids = results.css("entry id").map{|x| x.attributes["id"].value}
-  pics = results.css("entry")[0].children[27].children[0].text
+  pics = results.css("entry").map{|item| item.children[27].children[0].text}
   hash = Hash[ids.zip(pics)]
 end
 
