@@ -2,7 +2,7 @@ class App < ActiveRecord::Base
   # for searching
   include PgSearch
   pg_search_scope :search,
-                  :against => [[:track_name, 'A'], [:seller_name, 'A'], [:description, 'D'], [:release_notes, 'D']],
+                  :against => [[:track_name, 'A'], [:seller_name, 'A'], [:genres, 'B'], [:description, 'D'], [:release_notes, 'D']],
                   :using => {:tsearch => {:prefix => true, :normalization => 2}}
   
   attr_accessible :kind, :features, :supported_devices, :is_gamecenter_enabled, :artist_view_url, :artwork_url_60, 

@@ -1,0 +1,14 @@
+<div id="top-apps">
+  <table class="table-striped table-hover table-top-apps">
+    <% @apps.each_with_index do |app, index| %>
+    <tr>
+      <td id="order"><%= "#{humanize_index(index, params[:page].to_i, App.per_page)}." %></td>
+      <td id="icon"><%= image_tag app.artwork_url_60, class: "artwork-60" %></td>
+      <td><%= link_to app.track_name, app %></td>
+      <td>By: <%= link_to app.seller_name, '/seller/' + app.artist_id.to_s %></td>
+      <td><%= app.formatted_price %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= will_paginate(@apps) %>
+</div>
