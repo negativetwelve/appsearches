@@ -24,6 +24,10 @@ a:hover {
   text-decoration: none;
 }
 
+a.white-link {
+  color: white;
+}
+
 ul {
   clear: both;
   list-style-type: none;
@@ -34,7 +38,7 @@ ul li {
 }
 
 .main {
-  
+  margin-bottom: 10px; 
 }
 
 .header {

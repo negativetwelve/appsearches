@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs">
+  <% if params[:type] == "free" %>
+    <li class="active"><%= link_to 'Top Free Apps', '/top/free/apps' %></li>
+  <% else %>
+    <li><%= link_to 'Top Free Apps', '/top/free/apps' %></li>
+  <% end %>
+  
+  <% if params[:type] == "paid" %>
+  <li class="active"><%= link_to 'Top Paid Apps', '/top/paid/apps' %></li>
+  <% else %>
+    <li><%= link_to 'Top Paid Apps', '/top/paid/apps' %></li>
+  <% end %>
+</ul>

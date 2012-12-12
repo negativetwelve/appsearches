@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def full_title(page_title)
-    base_title = "App Search"
+    base_title = "App Searches - find the best iPhone and iPad apps"
     if page_title.empty?
       base_title
     else

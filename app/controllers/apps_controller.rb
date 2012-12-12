@@ -2,9 +2,9 @@ class AppsController < ApplicationController
   
   def index
     if params[:type].try(:downcase) == "free"
-      @apps = App.where(formatted_price: "Free").order(:rank).paginate(page: params[:page], per_page: App.per_page)
+      @apps = App.top.free.order(:rank).paginate(page: params[:page], per_page: App.per_page)
     elsif params[:type].try(:downcase) == "paid"
-      @apps = App.where("formatted_price != 'Free'").order(:rank).paginate(page: params[:page], per_page: App.per_page)
+      @apps = App.top.paid.order(:rank).paginate(page: params[:page], per_page: App.per_page)
     elsif params[:search]
       @apps = App.search(params[:search]).paginate(page: params[:page], per_page: App.per_page)
       if @apps.empty?

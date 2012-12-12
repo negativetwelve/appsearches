@@ -24,5 +24,12 @@ class App < ActiveRecord::Base
   # for paginating
   self.per_page = 20
   
+  scope :free, where(formatted_price: "Free")
+  scope :paid, where("formatted_price != 'Free'")
+  scope :top, where("rank IS NOT NULL")
+  
+  def free?
+    formatted_price.downcase == "free"
+  end
   
 end

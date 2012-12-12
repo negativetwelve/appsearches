@@ -3,7 +3,7 @@
     <%= @app.track_name %>
   </div>
   <div class="app-seller">
-    By: <%= @app.seller_name %>
+    By: <%= link_to @app.seller_name, '/seller/' + @app.artist_id.to_s %>
   </div>
   <div class="app-image">
     <%= image_tag @app.artwork_url_100, class: "artwork-100", size: "200x200" %>
