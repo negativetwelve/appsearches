@@ -3,11 +3,16 @@
   width: 100%;
 }
 
+.app-card {
+  height: 300px;
+  float: left;
+}
+
 .table-top-apps {
   width: 100%;
 }
 
-.table-top-apps td#icon {
+.icon {
   width: 80px;
 }
 

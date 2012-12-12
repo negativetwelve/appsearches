@@ -1,18 +1,24 @@
 <div id="top-apps">
-  <table class="table-striped table-hover table-top-apps">
-    <% @apps.each_with_index do |app, index| %>
-    <tr>
-      <td id="order"><%= "#{humanize_index(index, params[:page].to_i, App.per_page)}." %></td>
-      <td id="icon"><%= image_tag app.artwork_url_60, class: "artwork-60" %></td>
-      <td><%= link_to app.track_name, app %></td>
-      <td><span class="label label-inverse"><%= link_to 'By: ' + app.seller_name.to_s, '/seller/' + app.artist_id.to_s, class: "white-link" %></span></td>
+  <ul class="thumbnails">
+  <% @apps.each_with_index do |app, index| %>
+  <div class="app-card">
+    <li class="span2">
+      <%= link_to image_tag(app.artwork_url_100, size: "200x200", class: "artwork-100"), app, class: "thumbnail" %>
+      <%= link_to app.track_name, app %><br>
+      <%= link_to 'By: ' + app.seller_name.to_s, '/seller/' + app.artist_id.to_s %><br>
+  
       <% if app.free? %>
-        <td><span class="label label-success"><%= app.formatted_price %></span></td>
+        <span class="label label-success"><%= app.formatted_price %></span>
       <% else %>
-        <td><span class="label label-inverse"><%= app.formatted_price%></span></td>
+        <span class="label label-inverse"><%= app.formatted_price%></span>
       <% end %>
-    </tr>
+    </li>
+  </div>
   <% end %>
-  </table>
-  <%= will_paginate(@apps) %>
+  </ul>
+  
+  <div class="pagination-centered">
+    <%= will_paginate(@apps) %>
+  </div>
+
 </div>
