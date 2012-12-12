@@ -46,9 +46,9 @@ namespace :add do
     puts "Done."
   end
   
-  task :apps, [:amount, :type] => :environment do |t, args|
+  task :apps, [:amount, :type, :genre] => :environment do |t, args|
     puts "Getting apps..."
-    apps = get_top_apps(args[:amount], args[:type])
+    apps = get_apps(args[:amount], args[:type], args[:genre])
     puts "Adding apps..."
     apps.each_with_index do |(id, pic), index|
       app = find_by_id(id)["results"][0]
@@ -63,8 +63,11 @@ namespace :add do
 
 end
 
-def get_top_apps(amount, type)
-  address = "https://itunes.apple.com/us/rss/#{type.to_s}applications/limit=#{amount}/xml"
+def get_apps(amount, type, genre)
+  if genre.present?
+    genre = "/genre=#{genre.to_s}"
+  end
+  address = "https://itunes.apple.com/us/rss/#{type.to_s}applications/limit=#{amount}#{genre.to_s}/xml"
   results = Nokogiri::XML(open(address)).css("entry")
   ids = results.css("id").map{ |x| x.attributes["id"].value }
   pics = results.map{ |x| x.css("im|image").last.children.text }
