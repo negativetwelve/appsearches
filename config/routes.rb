@@ -5,8 +5,8 @@ AppSearches::Application.routes.draw do
   resources :apps, only: [:show, :index]
   
   root to: 'pages#home'
-  
-  match '/top/apps', to: 'apps#index'
+
+  match '/top/:type/apps', to: 'apps#index'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

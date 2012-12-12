@@ -14,6 +14,7 @@ gem 'fastimage'
 gem 'progress_bar'
 gem 'pg', '0.12.2'
 gem 'pg_search'
+gem 'rails3-jquery-autocomplete'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

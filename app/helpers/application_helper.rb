@@ -9,4 +9,12 @@ module ApplicationHelper
     end
   end
 
+  def humanize_index(index, page, per_page)
+    if page == 0
+      return index + 1
+    else
+      return index + 1 + per_page * (page-1)
+    end
+  end
+
 end

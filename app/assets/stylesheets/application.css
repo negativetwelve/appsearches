@@ -14,5 +14,5 @@
  *= require normalize
  *= require main
  *= require site
- *= require top/apps
+ *= require_tree .
  */
