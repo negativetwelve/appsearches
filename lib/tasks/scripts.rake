@@ -5,11 +5,11 @@ namespace :seed do
     puts "*"*50
     puts "ADDING TOP 300 FREE APPS"
     puts "*"*50
-    Rake::Task["add:top_apps"].execute({amount: 300, type: "free"})
+    Rake::Task["add:apps"].execute({amount: 300, type: "topfree"})
     puts "*"*50
     puts "ADDING TOP 300 PAID APPS"
     puts "*"*50
-    Rake::Task["add:top_apps"].execute({amount: 300, type: "paid"})
+    Rake::Task["add:apps"].execute({amount: 300, type: "toppaid"})
   end
 end
 
@@ -46,39 +46,28 @@ namespace :add do
     puts "Done."
   end
   
-  task :top_apps, [:amount, :type] => :environment do |t, args|
+  task :apps, [:amount, :type] => :environment do |t, args|
     puts "Getting apps..."
-    if args[:type] == "free"
-      apps = get_top_free_apps(args[:amount])
-    elsif args[:type] == "paid"
-      apps = get_top_paid_apps(args[:amount])
-    else
-      puts "Invalid parameters, specify the amount and the type. Ex: rake add:top_apps[300,free]"
-      return
-    end
+    apps = get_top_apps(args[:amount], args[:type])
     puts "Adding apps..."
     apps.each_with_index do |(id, pic), index|
       app = find_by_id(id)["results"][0]
-      add_app_to_db(app, index+1, pic)
+      if args[:type].to_s[0..3] == "top"
+        add_app_to_db(app, index+1, pic)
+      else
+        add_app_to_db(app, nil, pic)
+      end
     end
     puts "Done."
   end
 
 end
 
-def get_top_free_apps(amount)
-  address = "https://itunes.apple.com/us/rss/topfreeapplications/limit=#{amount}/xml"
-  results = Nokogiri::XML(open(address))
-  ids = results.css("entry id").map{|x| x.attributes["id"].value}
-  pics = results.css("entry").map{|item| item.children[27].children[0].text}
-  hash = Hash[ids.zip(pics)]
-end
-
-def get_top_paid_apps(amount)
-  address = "https://itunes.apple.com/us/rss/toppaidapplications/limit=#{amount}/xml"
-  results = Nokogiri::XML(open(address))
-  ids = results.css("entry id").map{|x| x.attributes["id"].value}
-  pics = results.css("entry").map{|item| item.children[27].children[0].text}
+def get_top_apps(amount, type)
+  address = "https://itunes.apple.com/us/rss/#{type.to_s}applications/limit=#{amount}/xml"
+  results = Nokogiri::XML(open(address)).css("entry")
+  ids = results.css("id").map{ |x| x.attributes["id"].value }
+  pics = results.map{ |x| x.css("im|image").last.children.text }
   hash = Hash[ids.zip(pics)]
 end
 
@@ -96,6 +85,10 @@ def find_by_id(id)
 end
 
 def add_app_to_db(app, rank, pic)
+  if app.nil? || pic[-3..-1] != "png"
+    puts "Invalid app."
+    return
+  end
   db_app = App.find_by_track_id(app["trackId"].to_i)
   if db_app.nil?
     new_app = App.create!(kind: app["kind"], features: app["features"], supported_devices: app["supportedDevices"], 
@@ -118,6 +111,7 @@ def add_app_to_db(app, rank, pic)
     puts "Added #{app["trackName"]}"
   else
     db_app.rank = rank
+    db_app.artwork_url_100 = pic
     db_app.save
     puts "Updated #{db_app.track_name}"
   end

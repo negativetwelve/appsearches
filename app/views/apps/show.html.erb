@@ -13,6 +13,9 @@
       <div class="app-image">
         <%= image_tag @app.artwork_url_100, class: "artwork-100", size: "200x200" %>
       </div>
+      <div class="app-release-date">
+        <%= @app.release_date.to_date %>
+      </div>
       <div class="app-link-itunes">
         <%= link_to "View on iTunes website", @app.track_view_url %>
       </div>

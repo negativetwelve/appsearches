@@ -5,6 +5,7 @@
     <h3>Search for the apps that you want.</h3>
     <h3><%= link_to "Top Free Apps", top_apps_type_path('free') %></h3>
     <h3><%= link_to "Top Paid Apps", top_apps_type_path('paid') %></h3>
+    <h3><%= link_to "Newest Apps", newest_apps_path("newest") %></h3>
     
     <form action="<%= apps_path %>" method="get" >
       <div class="input-append">

@@ -1,6 +1,12 @@
 <ul class="nav nav-tabs">
+  <% if params[:type] == "newest" %>
+    <li class="active"><%= link_to 'Newest Apps', newest_apps_path("newest") %></li>
+  <% else %>
+    <li><%= link_to 'Newest Apps', newest_apps_path("newest") %></li>
+  <% end %>
+  
   <% if params[:type] == "free" %>
-  <li class="active"><%= link_to 'Top Free Apps', top_apps_type_path('free') %></li>
+    <li class="active"><%= link_to 'Top Free Apps', top_apps_type_path('free') %></li>
   <% else %>
     <li><%= link_to 'Top Free Apps', top_apps_type_path('free') %></li>
   <% end %>
@@ -12,7 +18,7 @@
   <% end %>
   
   <% if params[:price] == "0.99" %>
-  <li class="active"><%= link_to 'Top Apps for $0.99', top_apps_path(price: 0.99) %></li>
+    <li class="active"><%= link_to 'Top Apps for $0.99', top_apps_path(price: 0.99) %></li>
   <% else %>
     <li><%= link_to 'Top Apps for $0.99', top_apps_path(price: 0.99) %></li>
   <% end %>

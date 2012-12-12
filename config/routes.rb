@@ -9,6 +9,7 @@ AppSearches::Application.routes.draw do
   match '/seller/:artist_id', to: 'apps#index'
   match '/top/apps', to: 'apps#index', as: :top_apps
   match '/top/apps/:type', to: 'apps#index', as: :top_apps_type
+  match '/:type/apps', to: 'apps#index', as: :newest_apps
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
