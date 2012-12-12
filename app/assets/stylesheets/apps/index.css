@@ -8,6 +8,10 @@
   float: left;
 }
 
+.radius-40 {
+  border-radius: 40px;
+}
+
 .table-top-apps {
   width: 100%;
 }
