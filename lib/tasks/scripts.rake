@@ -57,9 +57,9 @@ namespace :add do
       return
     end
     puts "Adding apps..."
-    apps.each_with_index do |id, index|
+    apps.each_with_index do |(id, pic), index|
       app = find_by_id(id)["results"][0]
-      add_app_to_db(app, index+1)
+      add_app_to_db(app, index+1, pic)
     end
     puts "Done."
   end
@@ -70,12 +70,16 @@ def get_top_free_apps(amount)
   address = "https://itunes.apple.com/us/rss/topfreeapplications/limit=#{amount}/xml"
   results = Nokogiri::XML(open(address))
   ids = results.css("entry id").map{|x| x.attributes["id"].value}
+  pics = results.css("entry").map{|item| item.children[27].children[0].text}
+  hash = Hash[ids.zip(pics)]
 end
 
 def get_top_paid_apps(amount)
   address = "https://itunes.apple.com/us/rss/toppaidapplications/limit=#{amount}/xml"
   results = Nokogiri::XML(open(address))
   ids = results.css("entry id").map{|x| x.attributes["id"].value}
+  pics = results.css("entry")[0].children[27].children[0].text
+  hash = Hash[ids.zip(pics)]
 end
 
 def get_top_music(amount)
@@ -91,7 +95,7 @@ def find_by_id(id)
   return JSON.parse(data)
 end
 
-def add_app_to_db(app, rank)
+def add_app_to_db(app, rank, pic)
   db_app = App.find_by_track_id(app["trackId"].to_i)
   if db_app.nil?
     new_app = App.create!(kind: app["kind"], features: app["features"], supported_devices: app["supportedDevices"], 
@@ -104,7 +108,7 @@ def add_app_to_db(app, rank)
                         genres: app["genres"], bundle_id: app["bundleId"], track_id: app["trackId"], track_name: app["trackName"], 
                         primary_genre_name: app["primaryGenreName"], genre_id: app["primaryGenreId"], 
                         release_notes: app["releaseNotes"], wrapper_type: app["wrapperType"], 
-                        content_advisory_rating: app["contentAdvisoryRating"], artwork_url_100: app["artworkUrl100"], 
+                        content_advisory_rating: app["contentAdvisoryRating"], artwork_url_100: pic, 
                         track_censored_name: app["trackCensoredName"], track_view_url: app["trackViewUrl"], 
                         language_codes: app["languageCodesISO2A"], file_size_bytes: app["fileSizeBytes"], 
                         formatted_price: app["formattedPrice"], average_user_rating_for_current_version: app["averageUserRatingForCurrentVersion"], 
