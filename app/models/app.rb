@@ -22,7 +22,7 @@ class App < ActiveRecord::Base
   serialize :language_codes, Array
   
   # for paginating
-  self.per_page = 20
+  self.per_page = 30
   
   scope :free, where(formatted_price: "Free")
   scope :paid, where("formatted_price != 'Free'")
