@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+.total-apps {
+  float: right;
+  padding-top: 30px;
+  padding-right: 30px;
+}
+
 .span1-5 {
   width: 110px;
   padding: 5px;

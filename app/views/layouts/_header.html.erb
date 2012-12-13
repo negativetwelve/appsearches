@@ -10,4 +10,7 @@
       </div>
     </form>
   </span>
+  <span class="total-apps">
+    <%= "#{number_with_delimiter(App.count, :delimiter => ',')} apps have been indexed." %>
+  </span>
 </header>
