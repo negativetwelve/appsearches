@@ -11,7 +11,7 @@ class App < ActiveRecord::Base
                   :track_name, :primary_genre_name, :genre_id, :release_notes, :wrapper_type, :content_advisory_rating, 
                   :artwork_url_100, :track_censored_name, :track_view_url, :language_codes, :file_size_bytes, :formatted_price,
                   :average_user_rating_for_current_version, :user_rating_count_for_current_version, :track_content_rating, 
-                  :average_user_rating, :user_rating_count, :rank
+                  :average_user_rating, :user_rating_count, :rank, :rank_history
   
   serialize :features, Array
   serialize :supported_devices, Array
@@ -20,6 +20,7 @@ class App < ActiveRecord::Base
   serialize :genre_ids, Array
   serialize :genres, Array
   serialize :language_codes, Array
+  serialize :rank_history, Hash
   
   # for paginating
   self.per_page = 30

@@ -111,10 +111,11 @@ def add_app_to_db(app, rank, pic)
                         formatted_price: app["formattedPrice"], average_user_rating_for_current_version: app["averageUserRatingForCurrentVersion"], 
                         user_rating_count_for_current_version: app["userRatingCountForCurrentVersion"], 
                         track_content_rating: app["trackContentRating"], average_user_rating: app["averageUserRating"], 
-                        user_rating_count: app["userRatingCount"], rank: rank)
+                        user_rating_count: app["userRatingCount"], rank: rank, rank_history: {Date.today => rank})
     puts "Added #{app["trackName"]}"
   else
     db_app.rank = rank
+    db_app.rank_history[Date.today] = rank
     db_app.artwork_url_100 = pic
     db_app.save!
     puts "Updated #{db_app.track_name} with rank #{db_app.rank.to_s}"

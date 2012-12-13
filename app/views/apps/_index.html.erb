@@ -4,6 +4,15 @@
   <div class="app-card">
     <li class="span2">
       <%= link_to image_tag(app.artwork_url_100, size: "100x100", class: "artwork-100"), app, class: "thumbnail radius-100" %>
+      <% if params[:type].present? && (params[:type] == "free" || params[:type] == "paid") %>
+        <% if app.rank.to_i < app.rank_history[Date.yesterday].to_i %>
+          <i class="icon-chevron-up"></i>
+        <% elsif !app.rank_history[Date.yesterday].nil? && app.rank.to_i > app.rank_history[Date.yesterday].to_i %>
+          <i class="icon-chevron-down"></i>
+        <% else %>
+          <i class="icon-minus"></i>
+        <% end %>
+      <% end %>
       <%= link_to app.track_name, app %><br>
       <%= link_to 'By: ' + app.seller_name.to_s, '/seller/' + app.artist_id.to_s %><br>
   
