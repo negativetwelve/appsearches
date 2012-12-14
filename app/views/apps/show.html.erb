@@ -17,7 +17,7 @@
         <%= @app.release_date.to_date %>
       </div>
       <div class="app-link-itunes">
-        <%= link_to "View on iTunes website", @app.track_view_url %>
+        <%= link_to "View on iTunes website", add_linkshare(@app.track_view_url) %>
       </div>
     </div>
   

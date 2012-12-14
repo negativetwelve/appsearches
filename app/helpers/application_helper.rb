@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def add_linkshare(url)
+    return url + "&partnerId=30&siteID=2976862"
+  end
+
   def full_title(page_title)
     base_title = "App Searches - find the best iPhone and iPad apps"
     if page_title.empty?
