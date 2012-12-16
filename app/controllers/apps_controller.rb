@@ -1,7 +1,7 @@
 class AppsController < ApplicationController
   
   def index
-    @time = Date.current - 1.day
+    @time = Date.today - 1.day
     if params[:type].try(:downcase) == "free"
       @apps = App.top.free.order(:rank).paginate(page: params[:page], per_page: App.per_page)
     elsif params[:type].try(:downcase) == "paid"
