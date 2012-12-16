@@ -1,7 +1,8 @@
 module ApplicationHelper
 
   def add_linkshare(url)
-    return url + "&partnerId=30&siteID=d7GrMGiGlPk"
+    site_id = "2976862"
+    return url + "&partnerId=30&siteID=#{site_id}"
   end
 
   def full_title(page_title)

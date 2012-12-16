@@ -81,6 +81,11 @@ def get_top_music(amount)
   ids = results.css("entry id").map{|x| x.attributes["id"].value}
 end
 
+def get_new_148_apps
+  address = "http://feeds.feedburner.com/148apps_newest?format=xml"
+  results = Nokogiri::XML(open(address)).css("guid").children.map{|x| x.text[-9...-1]}
+end
+
 def find_by_id(id)
   address = "http://itunes.apple.com/lookup?id=#{id}"
   resp = Net::HTTP.get_response(URI.parse(address))
