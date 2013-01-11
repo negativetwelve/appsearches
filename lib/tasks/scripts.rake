@@ -18,6 +18,10 @@ namespace :get do
     puts get_top_free_apps(10)
   end
   
+  task :new_148_apps do 
+    get_new_148_apps
+  end
+  
   task :top_music do
     num = 300
     count = 1
@@ -35,6 +39,10 @@ namespace :find do
     app.each do |key, value|
       puts "#{key} : #{value}"
     end
+  end
+  
+  task :all_ids do |t, args|
+    find_all_ids
   end
 end
 
@@ -83,9 +91,34 @@ end
 
 def get_new_148_apps
   address = "http://feeds.feedburner.com/148apps_newest?format=xml"
-  results = Nokogiri::XML(open(address)).css("guid").children.map{|x| x.text[-9...-1]}
+  results = Nokogiri::XML(open(address)).css("guid").children.map{|x| x.text[-9..-1]}
+  apps = {}
+  results.each do |num|
+    address = "http://www.148apps.com/app/#{num}"
+    results = Nokogiri::XML(open(address))
+    pic = results.css("img")[2].attributes["src"].value
+    puts "#{num} : #{pic}"
+    apps[num] = pic
+  end
+  return apps
 end
 
+def find_all_ids
+  apps = {}
+  (550000000..557137623).each do |num|
+    address = "http://www.148apps.com/app/#{num}"
+    results = Nokogiri::XML(open(address))
+    text = results.css("h2").children.first.text
+    if text != "Application Not Found"
+      pic = results.css("img")[2].attributes["src"].value
+      puts "#{num} : #{pic}"
+      apps[num] = pic
+    end
+    puts num
+  end
+  return apps
+end
+    
 def find_by_id(id)
   address = "http://itunes.apple.com/lookup?id=#{id}"
   resp = Net::HTTP.get_response(URI.parse(address))
